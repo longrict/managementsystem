@@ -1,14 +1,11 @@
 import { redirect } from 'next/navigation';
-import { addUser } from '../../modules/Signup';
+import { addUser } from '../../modules/supabase';
+import { useState } from 'react';
 
-interface LoginProps {
-    email: string;
-    password: string;
-    setEmail: (email: string) => void;
-    setPassword: (password: string) => void;
-}
+export default function Login() {
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
 
-export default function Login({email,password,setEmail,setPassword}: LoginProps) {
     const handleSignUp = async function () {
         const user = await addUser(email,password);
         if (user) {
